@@ -24,13 +24,3 @@ Dado un conjunto de características de una campaña (edad del cliente, ingresos
 
 - ✅ Si la campaña será exitosa (`True` o `False`)
 - 📈 Probabilidad estimada de éxito (%)
-
----
-
-## 🚀 ¿Cómo usarlo localmente?
-
-### 1. Clona el repositorio
-
-```bash
-git clone https://github.com/tu-usuario/nombre-repo.git
-cd nombre-repo
