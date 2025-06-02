@@ -58,7 +58,7 @@ def predecir(data: CampañaInput):
         "probabilidad_exito": round(prob * 100, 2)
     }
 
-@app.get("/principal", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def principal():
     with open("static/modelo2-vista1.html", "r", encoding="utf-8") as file:
         html = file.read()
