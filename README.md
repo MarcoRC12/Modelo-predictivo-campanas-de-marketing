@@ -6,6 +6,10 @@ Se utiliza un modelo de **Random Forest Classifier** entrenado con variables com
 
 ---
 
+> 📌 Este modelo se ha entrenado con datos reales disponibles públicamente a través de Kaggle.  
+> Dataset: [Predict Conversion in Digital Marketing](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
+## 🧠 ¿Qué predice el modelo?
+
 ## 🔧 Tecnologías Utilizadas
 
 - Python 3.13.3
@@ -17,8 +21,6 @@ Se utiliza un modelo de **Random Forest Classifier** entrenado con variables com
 - HTML + JavaScript (para interfaz de prueba)
 
 ---
-
-## 🧠 ¿Qué predice el modelo?
 
 Dado un conjunto de características de una campaña (edad del cliente, ingresos, canal de campaña, gasto publicitario, etc.), el modelo retorna:
 
