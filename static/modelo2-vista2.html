@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Predicción de campaña</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    async function enviarDatos() {
+      const datos = {
+        Age: parseFloat(document.getElementById("v2").value),
+        Income: parseFloat(document.getElementById("v3").value),
+        AdSpend: parseFloat(document.getElementById("v6").value),
+        ClickThroughRate: parseFloat(document.getElementById("v7").value),
+        ConversionRate: parseFloat(document.getElementById("v8").value),
+        WebsiteVisits: parseInt(document.getElementById("v9").value),
+        PagesPerVisit: parseFloat(document.getElementById("v10").value),
+        TimeOnSite: parseFloat(document.getElementById("v11").value),
+        SocialShares: parseInt(document.getElementById("v12").value),
+        EmailOpens: parseInt(document.getElementById("v13").value),
+        EmailClicks: parseInt(document.getElementById("v14").value),
+        PreviousPurchases: 0, // Si no lo tienes en el form
+        LoyaltyPoints: parseInt(document.getElementById("v15").value),
+  
+        // Variables dummy que deberías extraer según lo que ingresen
+        Gender_Male: 1, // O 0, dependiendo del género
+        CampaignChannel_PPC: document.getElementById("v4").value === "PPC" ? 1 : 0,
+        CampaignChannel_Referral: document.getElementById("v4").value === "Referral" ? 1 : 0,
+        CampaignChannel_SEO: document.getElementById("v4").value === "SEO" ? 1 : 0,
+        CampaignChannel_Social_Media: document.getElementById("v4").value === "Social Media" ? 1 : 0,
+  
+        CampaignType_Consideration: document.getElementById("v5").value === "Consideration" ? 1 : 0,
+        CampaignType_Conversion: document.getElementById("v5").value === "Conversion" ? 1 : 0,
+        CampaignType_Retention: document.getElementById("v5").value === "Retention" ? 1 : 0
+      };
+  
+      const response = await fetch("http://localhost:8000/predecir", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datos)
+      });
+  
+      const resultado = await response.json();
+      alert("¿Será exitosa?: " + (resultado.exito ? "Sí ✅" : "No ❌") +
+            "\nProbabilidad: " + resultado.probabilidad_exito + "%");
+    }
+  </script>
+  
+  <style>
+
+    body {
+      background-color: #1e1e2f;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 40px;
+      color: #ffffff;
+    }
+  
+    .formulario, .resultado {
+      background-color: #2c2c3c;
+      padding: 30px;
+      border-radius: 12px;
+      width: 380px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  
+    h2, h3 {
+      text-align: center;
+      color: #81d4fa;
+    }
+  
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+  
+    input[type="text"], input[type="file"], input[type="number"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #4f4f5c;
+      background-color: #3c3c4f;
+      color: #ffffff;
+    }
+  
+    .resultado-final {
+      margin-top: 25px;
+      padding: 20px;
+      background-color: #fdfdfd;
+      color: #000000;
+      font-weight: bold;
+      border-radius: 10px;
+      text-align: center;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #81d4fa;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="formulario">
+    <h3>Ingresa tus variables</h3>
+    <body>
+
+      <h1>¿Será exitosa tu campaña de marketing?</h1>
+    
+      <form id="formulario">
+        <label>Edad:</label>
+        <input type="number" id="v2" required>
+    
+        <label>Ingresos:</label>
+        <input type="number" id="v3" required>
+    
+        <label>Canal de Campaña:</label>
+        <select id="v4" required>
+          <option value="PPC">PPC</option>
+          <option value="Referral">Referral</option>
+          <option value="SEO">SEO</option>
+          <option value="Social Media">Social Media</option>
+        </select>
+    
+        <label>Tipo de Campaña:</label>
+        <select id="v5" required>
+          <option value="Consideration">Consideration</option>
+          <option value="Conversion">Conversion</option>
+          <option value="Retention">Retention</option>
+        </select>
+    
+        <label>Gasto Publicitario:</label>
+        <input type="number" id="v6" step="0.01">
+    
+        <label>Tasa de Clicks:</label>
+        <input type="number" id="v7" step="0.01">
+    
+        <label>Tasa de Conversión:</label>
+        <input type="number" id="v8" step="0.01">
+    
+        <label>Visitas al Sitio Web:</label>
+        <input type="number" id="v9">
+    
+        <label>Páginas por Visita:</label>
+        <input type="number" id="v10" step="0.1">
+    
+        <label>Tiempo en el Sitio (min):</label>
+        <input type="number" id="v11" step="0.1">
+    
+        <label>Veces Compartido:</label>
+        <input type="number" id="v12">
+    
+        <label>Correos Abiertos:</label>
+        <input type="number" id="v13">
+    
+        <label>Clicks en Correos:</label>
+        <input type="number" id="v14">
+    
+        <label>Puntos de Fidelidad:</label>
+        <input type="number" id="v15">
+    
+        <button type="button" onclick="enviarDatos()">Predecir Éxito</button>
+        <div class="respuesta" id="resultado"></div>
+      </form>
+    
+      <script>
+        async function enviarDatos() {
+          const datos = {
+            Age: parseFloat(document.getElementById("v2").value),
+            Income: parseFloat(document.getElementById("v3").value),
+            AdSpend: parseFloat(document.getElementById("v6").value),
+            ClickThroughRate: parseFloat(document.getElementById("v7").value),
+            ConversionRate: parseFloat(document.getElementById("v8").value),
+            WebsiteVisits: parseInt(document.getElementById("v9").value),
+            PagesPerVisit: parseFloat(document.getElementById("v10").value),
+            TimeOnSite: parseFloat(document.getElementById("v11").value),
+            SocialShares: parseInt(document.getElementById("v12").value),
+            EmailOpens: parseInt(document.getElementById("v13").value),
+            EmailClicks: parseInt(document.getElementById("v14").value),
+            PreviousPurchases: 0,
+            LoyaltyPoints: parseInt(document.getElementById("v15").value),
+    
+            Gender_Male: 1,
+            CampaignChannel_PPC: document.getElementById("v4").value === "PPC" ? 1 : 0,
+            CampaignChannel_Referral: document.getElementById("v4").value === "Referral" ? 1 : 0,
+            CampaignChannel_SEO: document.getElementById("v4").value === "SEO" ? 1 : 0,
+            CampaignChannel_Social_Media: document.getElementById("v4").value === "Social Media" ? 1 : 0,
+    
+            CampaignType_Consideration: document.getElementById("v5").value === "Consideration" ? 1 : 0,
+            CampaignType_Conversion: document.getElementById("v5").value === "Conversion" ? 1 : 0,
+            CampaignType_Retention: document.getElementById("v5").value === "Retention" ? 1 : 0
+          };
+    
+          const res = await fetch("http://localhost:8000/predecir", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datos)
+          });
+    
+          const result = await res.json();
+          document.getElementById("resultado").textContent =
+            result.exito
+              ? `✅ ¡Éxito esperado! Probabilidad: ${result.probabilidad_exito}%`
+              : `❌ No será exitosa. Probabilidad: ${result.probabilidad_exito}%`;
+        }
+      </script>
+  </div>
+
+</body>
+</html>
