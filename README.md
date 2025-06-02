@@ -8,7 +8,7 @@ Se utiliza un modelo de **Random Forest Classifier** entrenado con variables com
 
 ## 🔧 Tecnologías Utilizadas
 
-- Python 3.9+
+- Python 3.13.3
 - FastAPI
 - Uvicorn
 - Pandas
