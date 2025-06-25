@@ -6,9 +6,9 @@ Se utiliza un modelo de **Random Forest Classifier** entrenado con variables com
 
 ---
 
-> 📌 Este modelo se ha entrenado con datos reales disponibles públicamente a través de Kaggle.  
-> Dataset: [Predict Conversion in Digital Marketing](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset)
-## 🧠 ¿Qué predice el modelo?
+> 📌 Este modelo se ha entrenado con datos reales
+>
+> ## 🧠 ¿Qué predice el modelo?
 
 ## 🔧 Tecnologías Utilizadas
 
